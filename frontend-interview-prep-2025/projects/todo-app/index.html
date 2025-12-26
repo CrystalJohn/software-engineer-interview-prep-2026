@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            width: 100%;
+            max-width: 500px;
+            padding: 30px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #667eea;
+            margin-bottom: 30px;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        input {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        button {
+            padding: 12px 20px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #764ba2;
+        }
+
+        .todo-list {
+            list-style: none;
+        }
+
+        .todo-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            transition: background 0.3s;
+        }
+
+        .todo-item:hover {
+            background: #f0f0f0;
+        }
+
+        .todo-item input[type="checkbox"] {
+            width: auto;
+            cursor: pointer;
+        }
+
+        .todo-item.completed {
+            opacity: 0.6;
+        }
+
+        .todo-item.completed span {
+            text-decoration: line-through;
+            color: #999;
+        }
+
+        .todo-text {
+            flex: 1;
+        }
+
+        .delete-btn {
+            padding: 8px 12px;
+            background: #e74c3c;
+            font-size: 0.9rem;
+        }
+
+        .delete-btn:hover {
+            background: #c0392b;
+        }
+
+        .empty-state {
+            text-align: center;
+            color: #999;
+            padding: 20px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📝 Todo App</h1>
+        
+        <div class="input-group">
+            <input type="text" id="todoInput" placeholder="Thêm công việc mới...">
+            <button onclick="addTodo()">Thêm</button>
+        </div>
+
+        <ul class="todo-list" id="todoList"></ul>
+        
+        <div id="emptyState" class="empty-state">
+            Danh sách công việc của bạn đang trống
+        </div>
+
+        <a href="../../index.html" class="back-link">← Quay lại</a>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

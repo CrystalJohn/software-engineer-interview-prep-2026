@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            width: 100%;
+            max-width: 500px;
+            padding: 30px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #667eea;
+            margin-bottom: 30px;
+        }
+
+        .search-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        input {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        button {
+            padding: 12px 20px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #764ba2;
+        }
+
+        .weather-info {
+            text-align: center;
+            display: none;
+        }
+
+        .weather-info.show {
+            display: block;
+        }
+
+        .city-name {
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .temperature {
+            font-size: 3rem;
+            color: #667eea;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .description {
+            font-size: 1.2rem;
+            color: #666;
+            text-transform: capitalize;
+            margin-bottom: 20px;
+        }
+
+        .details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+        }
+
+        .detail-item {
+            padding: 10px;
+            background: #f9f9f9;
+            border-radius: 5px;
+        }
+
+        .detail-label {
+            font-size: 0.9rem;
+            color: #999;
+            margin-bottom: 5px;
+        }
+
+        .detail-value {
+            font-size: 1.2rem;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .error {
+            color: #e74c3c;
+            text-align: center;
+            padding: 20px;
+            background: #ffe6e6;
+            border-radius: 5px;
+            display: none;
+        }
+
+        .error.show {
+            display: block;
+        }
+
+        .empty-state {
+            text-align: center;
+            color: #999;
+            padding: 40px 20px;
+        }
+
+        .loading {
+            text-align: center;
+            color: #667eea;
+            padding: 20px;
+            display: none;
+        }
+
+        .loading.show {
+            display: block;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌤️ Weather App</h1>
+        
+        <div class="search-group">
+            <input type="text" id="cityInput" placeholder="Nhập tên thành phố...">
+            <button onclick="searchWeather()">Tìm kiếm</button>
+        </div>
+
+        <div class="loading" id="loading">Đang tải...</div>
+
+        <div class="empty-state" id="emptyState">
+            Nhập tên một thành phố để xem thời tiết
+        </div>
+
+        <div class="error" id="error"></div>
+
+        <div class="weather-info" id="weatherInfo">
+            <div class="city-name" id="cityName"></div>
+            <div class="temperature" id="temperature"></div>
+            <div class="description" id="description"></div>
+            
+            <div class="details">
+                <div class="detail-item">
+                    <div class="detail-label">Độ ẩm</div>
+                    <div class="detail-value" id="humidity"></div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Tốc độ gió</div>
+                    <div class="detail-value" id="windSpeed"></div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Áp suất</div>
+                    <div class="detail-value" id="pressure"></div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Cảm giác như</div>
+                    <div class="detail-value" id="feelsLike"></div>
+                </div>
+            </div>
+        </div>
+
+        <a href="../../index.html" class="back-link">← Quay lại</a>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
